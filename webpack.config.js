@@ -4,7 +4,7 @@ const path = require('path')
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'main.js'
