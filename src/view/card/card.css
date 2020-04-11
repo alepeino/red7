@@ -1,19 +1,13 @@
 .card {
-    width: 4rem;
-    height: 6rem;
-    border-radius: 8%;
-    color: ivory;
-    font-size: 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    width: var(--card-width);
+    height: var(--card-height);
+    font-size: var(--card-font-size);
 }
 
 .horizontal {
-    width: 6rem;
-    height: 4rem;
-    font-size: 0.8rem;
+    width: var(--card-height);
+    height: var(--card-width);
+    font-size: 1rem;
     text-transform: uppercase;
 }
 
@@ -22,29 +16,29 @@
 }
 
 .card-1 {
-    background-color: blueviolet;
+    @apply bg-purple-600;
 }
 
 .card-2 {
-    background-color: indigo;
+    @apply bg-indigo-800;
 }
 
 .card-3 {
-    background-color: blue;
+    @apply bg-blue-600;
 }
 
 .card-4 {
-    background-color: darkgreen;
+    @apply bg-green-700;
 }
 
 .card-5 {
-    background-color: yellow;
+    @apply bg-yellow-500;
 }
 
 .card-6 {
-    background-color: darkorange;
+    @apply bg-orange-500;
 }
 
 .card-7 {
-    background-color: red;
+    @apply bg-red-600;
 }

@@ -7,9 +7,12 @@ export function Card ({ card, horizontal = false }: { card?: Card, horizontal?: 
     return null
   }
   return (
-    <div class={['card', `card-${card.color}`, { horizontal }]}>
+    <div class={[
+      'text-white rounded-lg flex justify-center items-center',
+      'card', `card-${card.color}`, { horizontal }
+    ]}>
       { horizontal
-        ? <span>{canvasRules[card.color as keyof typeof canvasRules]}</span>
+        ? <span class="text-center">{canvasRules[card.color as keyof typeof canvasRules]}</span>
         : <span>{card.number}</span>}
     </div>
   )
