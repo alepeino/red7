@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'fredoka_oneregular';
+    src: url('../fonts/fredokaone-regular-webfont.woff2') format('woff2'),
+         url('../fonts/fredokaone-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'fredoka_oneregular', 'sans-serif';
+}
