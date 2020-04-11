@@ -32,7 +32,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.ts']
+    extensions: ['.ts', '.tsx', '.js']
   },
   plugins: [
     new HtmlWebPackPlugin({

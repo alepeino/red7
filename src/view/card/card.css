@@ -1,0 +1,51 @@
+.card {
+    width: 4rem;
+    height: 6rem;
+    border-radius: 8%;
+    color: ivory;
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.horizontal {
+    width: 6rem;
+    height: 4rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.card-1 {
+    background-color: blueviolet;
+}
+
+.card-1 {
+    background-color: blueviolet;
+}
+
+.card-2 {
+    background-color: indigo;
+}
+
+.card-3 {
+    background-color: blue;
+}
+
+.card-4 {
+    background-color: darkgreen;
+}
+
+.card-5 {
+    background-color: yellow;
+}
+
+.card-6 {
+    background-color: darkorange;
+}
+
+.card-7 {
+    background-color: red;
+}
