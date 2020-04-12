@@ -5,7 +5,6 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "jsxFactory": "JsxDom.createElement"
+    "jsx": "react"
   }
 }

@@ -1,6 +1,6 @@
 import intersectionBy from 'lodash/fp/intersectionBy'
 import { initState, setup, STARTING_CARDS_IN_HAND, STARTING_CARDS_IN_PALETTE } from '../src/models/game'
-import { Card, cardColors, cardNumbers } from '../src/models/card'
+import { Card, cardColors, cardNumbers, serializeCard } from '../src/models/card'
 import { Player } from '../src/models/player'
 
 describe('Game setup', () => {
@@ -36,7 +36,7 @@ describe('Game setup', () => {
 
     it('should have dealt cards from deck', () => {
       const state = setup(initState())
-      const intersection = intersectionBy<Card, Card>((c: Card) => `c${c.color}n${c.number}`)
+      const intersection = intersectionBy<Card, Card>(serializeCard)
       const playerCards = (player: Player) => [...player.hand, ...player.palette]
 
       state.players.forEach((player, i, allPlayers) => {

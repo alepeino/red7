@@ -12,6 +12,8 @@ export const canvasRules = {
   7: 'Highest card'
 }
 
+export const serializeCard = (c: Card) => `c${c.color}n${c.number}`
+
 export interface Card {
   color: number
   number: number

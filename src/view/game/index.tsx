@@ -1,20 +1,13 @@
-import JsxDom from 'jsx-dom'
-import morphdom from 'morphdom'
+import React, { FunctionComponent } from 'react'
 import { GameState } from '../../models/game'
 import { Canvas } from '../canvas'
+import { Player } from '../player'
 
-export function render (s: GameState) {
-  const root = document.getElementById('root')
-  if (!root) {
-    throw new Error('No root element')
-  }
-  morphdom(root, renderState(s))
-}
-
-function renderState (s: GameState) {
+export const Game: FunctionComponent<GameState> = ({ canvas, players }) => {
   return (
     <div id="root">
-      <Canvas cards={s.canvas} />
+      <Canvas cards={canvas}/>
+      {players.map(p => <Player key={p.name} {...p} />)}
     </div>
   )
 }
