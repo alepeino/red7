@@ -8,7 +8,7 @@ export const STARTING_CANVAS_CARD: Card = { number: 0, color: 7 }
 
 export interface GameState {
   players: Player[]
-  activePlayer?: Player
+  activePlayer?: number
   deck: Card[]
   canvas: Card[]
 }
@@ -24,7 +24,8 @@ export function setup (state: GameState): GameState {
       ...player,
       hand: drawFromDeck(deck, STARTING_CARDS_IN_HAND),
       palette: drawFromDeck(deck, STARTING_CARDS_IN_PALETTE)
-    }))
+    })),
+    activePlayer: 0
   }
 }
 
