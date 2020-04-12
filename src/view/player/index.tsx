@@ -5,7 +5,7 @@ import { Card } from '../card'
 import styles from './player.css'
 import { serializeCard } from '../../models/card'
 
-export const Player: FunctionComponent<PlayerModel> = ({ name, hand, palette }) => {
+const Player: FunctionComponent<PlayerModel> = ({ name, hand, palette }) => {
   return (
     <div>
       <h2>{name}</h2>
@@ -18,3 +18,5 @@ export const Player: FunctionComponent<PlayerModel> = ({ name, hand, palette }) 
     </div>
   )
 }
+
+export { Player }

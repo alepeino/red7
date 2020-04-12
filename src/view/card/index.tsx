@@ -5,7 +5,7 @@ import styles from './card.css'
 import { DispatchContext } from '../../state'
 import { playToCanvas } from '../../state/actions'
 
-export const Card: FunctionComponent<{ card?: CardModel, horizontal?: boolean }> = ({ card, horizontal = false }) => {
+const Card: FunctionComponent<{ card?: CardModel, horizontal?: boolean }> = ({ card, horizontal = false }) => {
   const { dispatch } = useContext(DispatchContext)
   if (!card) {
     return null
@@ -23,3 +23,5 @@ export const Card: FunctionComponent<{ card?: CardModel, horizontal?: boolean }>
     </button>
   )
 }
+
+export { Card }
