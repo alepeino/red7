@@ -1,6 +1,6 @@
 import JsxDom from 'jsx-dom'
 import { canvasRules, Card } from '../../models/card'
-import './card.css'
+import styles from './card.css'
 
 export function Card ({ card, horizontal = false }: { card?: Card, horizontal?: boolean }) {
   if (!card) {
@@ -9,7 +9,7 @@ export function Card ({ card, horizontal = false }: { card?: Card, horizontal?: 
   return (
     <div class={[
       'text-white rounded-lg flex justify-center items-center',
-      'card', `card-${card.color}`, { horizontal }
+      styles.card, styles[`card-${card.color}`], { [styles.horizontal]: horizontal }
     ]}>
       { horizontal
         ? <span class="text-center">{canvasRules[card.color as keyof typeof canvasRules]}</span>
