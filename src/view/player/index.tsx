@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import React, { FunctionComponent } from 'react'
 import { Player as PlayerModel } from '../../models/player'
 import { Card } from '../card'
-import styles from './player.css'
+import styles from './player.scss'
 import { serializeCard } from '../../models/card'
 
 const Player: FunctionComponent<PlayerModel> = ({ name, hand, palette }) => {

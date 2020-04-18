@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
+import './index.scss'
 import { Game } from './view/game'
 import { DispatchContext, initialState, reducer } from './state'
 

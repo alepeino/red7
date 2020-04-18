@@ -3,7 +3,7 @@ module.exports = {
   plugins: {
     'postcss-modules': {
       globalModulePaths: [
-        'src/index.css'
+        'src/index.scss'
       ]
     },
     'tailwindcss': true,

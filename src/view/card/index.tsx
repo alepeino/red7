@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React, { FunctionComponent, useContext } from 'react'
 import { canvasRules, Card as CardModel } from '../../models/card'
-import styles from './card.css'
+import styles from './card.scss'
 import { DispatchContext } from '../../state'
 import { playToCanvas } from '../../state/actions'
 
