@@ -1,0 +1,14 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "rules": {
+    "interface-name": false,
+    "max-classes-per-file": false,
+    "member-access": false,
+    "member-ordering": false,
+    "ordered-imports": true,
+    "object-literal-sort-keys": false,
+    "variable-name": {
+      "options": ["allow-pascal-case", "check-format"]
+    }
+  }
+}

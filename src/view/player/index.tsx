@@ -1,11 +1,11 @@
 import classNames from 'classnames'
-import React, { FunctionComponent } from 'react'
+import React from 'react'
+import { serializeCard } from '../../models/card'
 import { Player as PlayerModel } from '../../models/player'
 import { Card } from '../card'
 import styles from './player.scss'
-import { serializeCard } from '../../models/card'
 
-const Player: FunctionComponent<PlayerModel> = ({ name, hand, palette }) => {
+const Player: React.FC<PlayerModel> = ({ name, hand, palette }) => {
   return (
     <div>
       <h2>{name}</h2>

@@ -1,11 +1,11 @@
 import classNames from 'classnames'
-import React, { FunctionComponent, useContext } from 'react'
+import React, { useContext } from 'react'
 import { canvasRules, Card as CardModel } from '../../models/card'
-import styles from './card.scss'
 import { DispatchContext } from '../../state'
 import { playToCanvas } from '../../state/actions'
+import styles from './card.scss'
 
-const Card: FunctionComponent<{ card?: CardModel, horizontal?: boolean }> = ({ card, horizontal = false }) => {
+const Card: React.FC<{ card?: CardModel, horizontal?: boolean }> = ({ card, horizontal = false }) => {
   const { dispatch } = useContext(DispatchContext)
   if (!card) {
     return null

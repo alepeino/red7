@@ -9,7 +9,7 @@ export const canvasRules = {
   4: 'Even cards',
   5: 'Cards of a same color',
   6: 'Cards of a same number',
-  7: 'Highest card'
+  7: 'Highest card',
 }
 
 export const serializeCard = (c: Card) => `c${c.color}n${c.number}`

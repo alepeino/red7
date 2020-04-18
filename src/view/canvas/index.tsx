@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react'
 import last from 'lodash/fp/last'
+import React from 'react'
 import { Card as CardModel } from '../../models/card'
 import { Card } from '../card'
 
-const Canvas: FunctionComponent<{ cards: CardModel[] }> = ({ cards }) => {
+const Canvas: React.FC<{ cards: CardModel[] }> = ({ cards }) => {
   return (
     <div>
       <Card card={last(cards)} horizontal={true}/>

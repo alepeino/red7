@@ -1,6 +1,6 @@
 import intersectionBy from 'lodash/fp/intersectionBy'
-import { initState, setup, STARTING_CARDS_IN_HAND, STARTING_CARDS_IN_PALETTE } from '../src/models/game'
 import { Card, cardColors, cardNumbers, serializeCard } from '../src/models/card'
+import { initState, setup, STARTING_CARDS_IN_HAND, STARTING_CARDS_IN_PALETTE } from '../src/models/game'
 import { Player } from '../src/models/player'
 
 describe('Game setup', () => {

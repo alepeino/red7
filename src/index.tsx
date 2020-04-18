@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react'
 import ReactDOM from 'react-dom'
 import './index.scss'
-import { Game } from './view/game'
 import { DispatchContext, initialState, reducer } from './state'
+import { Game } from './view/game'
 
 const root = document.getElementById('root')
 
