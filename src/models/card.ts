@@ -1,8 +1,10 @@
 import range from 'lodash/fp/range'
 
 export const cardColors = range(1, 8)
+
 export const cardNumbers = range(1, 8)
-export const canvasRules = {
+
+export const canvasRules: Record<CardColor, string> = {
   1: 'Cards below 4',
   2: 'Cards that form a run',
   3: 'Cards of different colors',
@@ -14,7 +16,10 @@ export const canvasRules = {
 
 export const serializeCard = (c: Card) => `c${c.color}n${c.number}`
 
+type CardColor = number
+type CardNumber = number
+
 export interface Card {
-  color: number
-  number: number
+  color: CardColor
+  number: CardNumber
 }

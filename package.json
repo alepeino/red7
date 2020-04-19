@@ -20,6 +20,8 @@
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
+    "react-dnd": "^10.0.2",
+    "react-dnd-touch-backend": "^10.0.2",
     "react-dom": "^16.13.1",
     "typesafe-actions": "^5.1.0"
   },

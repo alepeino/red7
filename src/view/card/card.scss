@@ -1,44 +1,75 @@
 .card {
-    width: var(--card-width);
-    height: var(--card-height);
-    font-size: var(--card-font-size);
+  width: var(--card-width);
+  height: var(--card-height);
+  font-size: var(--card-font-size);
 }
 
 .horizontal {
-    width: var(--card-height);
-    height: var(--card-width);
-    font-size: 1rem;
-    text-transform: uppercase;
+  width: var(--card-height);
+  height: var(--card-width);
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
 .card-1 {
-    background-color: blueviolet;
-}
+  @apply bg-purple-600;
 
-.card-1 {
-    @apply bg-purple-600;
+  &:active,
+  &.highlight {
+    @apply bg-purple-400;
+  }
 }
 
 .card-2 {
-    @apply bg-indigo-800;
+  @apply bg-indigo-800;
+
+  &:active,
+  &.highlight {
+    @apply bg-indigo-500;
+  }
 }
 
 .card-3 {
-    @apply bg-blue-600;
+  @apply bg-blue-600;
+
+  &:active,
+  &.highlight {
+    @apply bg-blue-400;
+  }
 }
 
 .card-4 {
-    @apply bg-green-700;
+  @apply bg-green-700;
+
+  &:active,
+  &.highlight {
+    @apply bg-green-400;
+  }
 }
 
 .card-5 {
-    @apply bg-yellow-500;
+  @apply bg-yellow-500;
+
+  &:active,
+  &.highlight {
+    @apply bg-yellow-400;
+  }
 }
 
 .card-6 {
-    @apply bg-orange-500;
+  @apply bg-orange-500;
+
+  &:active,
+  &.highlight {
+    @apply bg-orange-300;
+  }
 }
 
 .card-7 {
-    @apply bg-red-600;
+  @apply bg-red-600;
+
+  &:active,
+  &.highlight {
+    @apply bg-red-400;
+  }
 }

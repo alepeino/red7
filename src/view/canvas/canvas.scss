@@ -1,0 +1,35 @@
+.canvas {
+  @apply bg-pink-200;
+
+  &.highlight {
+    @apply bg-pink-300;
+  }
+
+  &.hover-card-1 {
+    @apply bg-purple-500;
+  }
+
+  &.hover-card-2 {
+    @apply bg-indigo-600;
+  }
+
+  &.hover-card-3 {
+    @apply bg-blue-500;
+  }
+
+  &.hover-card-4 {
+    @apply bg-green-500;
+  }
+
+  &.hover-card-5 {
+    @apply bg-yellow-400;
+  }
+
+  &.hover-card-6 {
+    @apply bg-orange-500;
+  }
+
+  &.hover-card-7 {
+    @apply bg-red-600;
+  }
+}
