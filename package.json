@@ -23,6 +23,7 @@
     "react-dnd": "^10.0.2",
     "react-dnd-touch-backend": "^10.0.2",
     "react-dom": "^16.13.1",
+    "react-hooks-global-state": "^1.0.0",
     "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
