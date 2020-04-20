@@ -11,7 +11,7 @@ import { Card, CARD_DRAG_TYPE } from './index'
 type DroppableCard = CardModel & { type: string }
 
 const PlayableCard: React.FC<{ card: CardModel }> = ({ card }) => {
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging, dragPosition }, drag] = useDrag({
     item: set<DroppableCard>('type', CARD_DRAG_TYPE, card),
     end: (droppedCard: DroppableCard | undefined, monitor) => {
       if (droppedCard && monitor.didDrop()) {
@@ -23,10 +23,23 @@ const PlayableCard: React.FC<{ card: CardModel }> = ({ card }) => {
     },
     collect: monitor => ({
       isDragging: monitor.isDragging(),
+      dragPosition: monitor.getClientOffset(),
     }),
   })
 
-  return <Card card={card} highlight={isDragging} ref={drag} />
+  return (
+    <>
+      {isDragging && dragPosition && (
+        <div
+          className="fixed shadow-2xl pointer-events-none"
+          style={{ left: dragPosition.x - 20, top: dragPosition.y - 20 }}
+        >
+          <Card card={card} />
+        </div>
+      )}
+      <Card card={card} highlight={isDragging} ref={drag} />
+    </>
+  )
 }
 
 export { PlayableCard }
