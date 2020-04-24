@@ -8,9 +8,11 @@ export const STARTING_CANVAS_CARD: Card = { number: 0, color: 7 }
 
 export interface GameState {
   players: Player[]
-  activePlayer?: number
   deck: Card[]
   canvas: Card[]
+  activePlayer?: number
+  activePlayerPlayedToPalette?: boolean
+  activePlayerPlayedToCanvas?: boolean
 }
 
 export function setup(state: GameState): GameState {
@@ -20,18 +22,20 @@ export function setup(state: GameState): GameState {
     ...state,
     deck,
     canvas: [STARTING_CANVAS_CARD],
-    players: state.players.map((player) => ({
+    players: state.players.map(player => ({
       ...player,
       hand: drawFromDeck(deck, STARTING_CARDS_IN_HAND),
       palette: drawFromDeck(deck, STARTING_CARDS_IN_PALETTE),
     })),
     activePlayer: 0,
+    activePlayerPlayedToPalette: false,
+    activePlayerPlayedToCanvas: false,
   }
 }
 
-export function initState(): GameState {
+export function initState(playerNames: string[] = ['A', 'B']): GameState {
   return {
-    players: [createPlayer('A'), createPlayer('B')],
+    players: playerNames.map(createPlayer),
     deck: createDeck(),
     canvas: [],
   }
@@ -39,20 +43,19 @@ export function initState(): GameState {
 
 function createDeck(): Card[] {
   const deck: Card[] = []
-  cardColors.forEach((number) =>
-    cardNumbers.forEach((color) => deck.push({ color, number }))
+  cardColors.forEach(number =>
+    cardNumbers.forEach(color => deck.push({ color, number }))
   )
   return deck
 }
 
 function createPlayer(name: string): Player {
   return {
+    id: name,
     name,
     hand: [],
     palette: [],
     lost: false,
-    playedToCanvas: false,
-    playedToPalette: false,
   }
 }
 

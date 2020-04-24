@@ -1,10 +1,9 @@
 import { Card } from './card'
 
 export interface Player {
+  id: any
   name: string
   hand: Card[]
   palette: Card[]
-  playedToPalette: boolean
-  playedToCanvas: boolean
   lost: boolean
 }
