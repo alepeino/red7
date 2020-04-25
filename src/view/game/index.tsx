@@ -8,7 +8,7 @@ const Game: React.FC<GameState> = state => {
     <div className="select-none">
       <Canvas cards={state.canvas} state={state} />
       {state.players.map(p => (
-        <Player key={p.name} {...p} />
+        <Player key={p.name} player={p} state={state} />
       ))}
     </div>
   )

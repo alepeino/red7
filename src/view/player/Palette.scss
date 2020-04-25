@@ -1,0 +1,35 @@
+.palette {
+  @apply bg-teal-200;
+
+  &.highlight {
+    @apply bg-teal-300;
+  }
+
+  &.hover-card-1 {
+    @apply bg-purple-400;
+  }
+
+  &.hover-card-2 {
+    @apply bg-indigo-500;
+  }
+
+  &.hover-card-3 {
+    @apply bg-blue-400;
+  }
+
+  &.hover-card-4 {
+    @apply bg-green-400;
+  }
+
+  &.hover-card-5 {
+    @apply bg-yellow-300;
+  }
+
+  &.hover-card-6 {
+    @apply bg-orange-400;
+  }
+
+  &.hover-card-7 {
+    @apply bg-red-500;
+  }
+}

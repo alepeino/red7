@@ -4,8 +4,9 @@ import React from 'react'
 import { useDrag } from 'react-dnd'
 import { Card as CardModel } from '../../models/card'
 import { dispatch } from '../../state'
-import { playToCanvas } from '../../state/actions'
+import { playToCanvas, playToPalette } from '../../state/actions'
 import { CANVAS_DROP_RESULT } from '../canvas'
+import { PALETTE_DROP_RESULT } from '../player/Palette'
 import { Card, CARD_DRAG_TYPE } from './index'
 
 export type DroppableCard = CardModel & { type: string }
@@ -18,6 +19,8 @@ const PlayableCard: React.FC<{ card: CardModel }> = ({ card }) => {
         switch (get('type', monitor.getDropResult())) {
           case CANVAS_DROP_RESULT.type:
             return dispatch(playToCanvas(droppedCard))
+          case PALETTE_DROP_RESULT.type:
+            return dispatch(playToPalette(droppedCard))
         }
       }
     },
