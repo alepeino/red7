@@ -220,7 +220,7 @@ describe('Determine winning player', () => {
         {
           palette: [
             { color: CardColor.YELLOW, number: 7 },
-            { color: CardColor.GREEN, number: 7 }
+            { color: CardColor.GREEN, number: 7 },
           ],
         },
       ])
@@ -326,6 +326,130 @@ describe('Determine winning player', () => {
       const state: GameState = {
         deck: [],
         canvas: [{ color: CardColor.YELLOW, number: 0 }],
+        players,
+      }
+      expect(winningPlayer(state)).toBe(0)
+    })
+  })
+
+  describe('Canvas rule: GREEN', () => {
+    it('1st player should win with 2 to 1', () => {
+      const players = makePlayers([
+        {
+          palette: [
+            { color: CardColor.YELLOW, number: 6 },
+            { color: CardColor.YELLOW, number: 4 },
+          ],
+        },
+        {
+          palette: [
+            { color: CardColor.YELLOW, number: 7 },
+            { color: CardColor.GREEN, number: 6 },
+          ],
+        },
+      ])
+      const state: GameState = {
+        deck: [],
+        canvas: [{ color: CardColor.GREEN, number: 0 }],
+        players,
+      }
+      expect(winningPlayer(state)).toBe(0)
+    })
+
+    it('2nd player should win with 3 to 2', () => {
+      const players = makePlayers([
+        {
+          palette: [
+            { color: CardColor.RED, number: 4 },
+            { color: CardColor.RED, number: 2 },
+          ],
+        },
+        {
+          palette: [
+            { color: CardColor.INDIGO, number: 2 },
+            { color: CardColor.INDIGO, number: 6 },
+            { color: CardColor.INDIGO, number: 4 },
+          ],
+        },
+      ])
+      const state: GameState = {
+        deck: [],
+        canvas: [{ color: CardColor.GREEN, number: 0 }],
+        players,
+      }
+      expect(winningPlayer(state)).toBe(1)
+    })
+
+    it('2nd player should win with 2 to 2 tiebreaking by number', () => {
+      const players = makePlayers([
+        {
+          palette: [
+            { color: CardColor.YELLOW, number: 4 },
+            { color: CardColor.YELLOW, number: 2 },
+          ],
+        },
+        {
+          palette: [
+            { color: CardColor.BLUE, number: 2 },
+            { color: CardColor.BLUE, number: 6 },
+          ],
+        },
+      ])
+      const state: GameState = {
+        deck: [],
+        canvas: [{ color: CardColor.GREEN, number: 0 }],
+        players,
+      }
+      expect(winningPlayer(state)).toBe(1)
+    })
+
+    it('2nd player should win with 3 to 3 tiebreaking by color', () => {
+      const players = makePlayers([
+        {
+          palette: [
+            { color: CardColor.GREEN, number: 6 },
+            { color: CardColor.GREEN, number: 4 },
+            { color: CardColor.GREEN, number: 2 },
+          ],
+        },
+        {
+          palette: [
+            { color: CardColor.RED, number: 6 },
+            { color: CardColor.RED, number: 2 },
+            { color: CardColor.RED, number: 4 },
+          ],
+        },
+      ])
+      const state: GameState = {
+        deck: [],
+        canvas: [{ color: CardColor.GREEN, number: 0 }],
+        players,
+      }
+      expect(winningPlayer(state)).toBe(1)
+    })
+
+    it('extra cards are ignored', () => {
+      const players = makePlayers([
+        {
+          palette: [
+            { color: CardColor.YELLOW, number: 4 },
+            { color: CardColor.INDIGO, number: 2 },
+            { color: CardColor.YELLOW, number: 6 },
+            { color: CardColor.GREEN, number: 3 },
+          ],
+        },
+        {
+          palette: [
+            { color: CardColor.INDIGO, number: 3 },
+            { color: CardColor.INDIGO, number: 1 },
+            { color: CardColor.BLUE, number: 6 },
+            { color: CardColor.RED, number: 1 },
+          ],
+        },
+      ])
+      const state: GameState = {
+        deck: [],
+        canvas: [{ color: CardColor.GREEN, number: 0 }],
         players,
       }
       expect(winningPlayer(state)).toBe(0)

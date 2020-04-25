@@ -1,4 +1,5 @@
 import entries from 'lodash/fp/entries'
+import filter from 'lodash/fp/filter'
 import first from 'lodash/fp/first'
 import flow from 'lodash/fp/flow'
 import get from 'lodash/fp/get'
@@ -29,6 +30,7 @@ function getFilteringRule(state: GameState): (palette: Card[]) => Card[] {
     ),
     [CardColor.ORANGE]: flow(groupBy('number'), entries, maxBy(first), nth(1)),
     [CardColor.YELLOW]: flow(groupBy('color'), entries, maxBy(first), nth(1)),
+    [CardColor.GREEN]: filter<Card>(c => c.number % 2 === 0),
   }
 
   return rules[get('color', last(state.canvas) || { color: CardColor.RED })]
