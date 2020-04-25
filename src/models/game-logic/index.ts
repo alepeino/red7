@@ -46,6 +46,7 @@ function getFilteringRule(state: GameState): (palette: Card[]) => Card[] {
         ),
       maxBy('length')
     ),
+    [CardColor.VIOLET]: filter<Card>(c => c.number < 4),
   }
 
   return rules[get('color', last(state.canvas) || { color: CardColor.RED })]
