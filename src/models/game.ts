@@ -10,7 +10,7 @@ export interface GameState {
   players: Player[]
   deck: Card[]
   canvas: Card[]
-  activePlayer?: number
+  activePlayer?: Player['id']
   activePlayerPlayedToPalette?: boolean
   activePlayerPlayedToCanvas?: boolean
 }
@@ -27,7 +27,7 @@ export function setup(state: GameState): GameState {
       hand: drawFromDeck(deck, STARTING_CARDS_IN_HAND),
       palette: drawFromDeck(deck, STARTING_CARDS_IN_PALETTE),
     })),
-    activePlayer: 0,
+    activePlayer: state.players[0].id,
     activePlayerPlayedToPalette: false,
     activePlayerPlayedToCanvas: false,
   }

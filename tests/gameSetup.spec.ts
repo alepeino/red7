@@ -21,7 +21,7 @@ describe('Game setup', () => {
     it('should make first player active', () => {
       const state = setup(initState())
       expect(state.players.length).toBeGreaterThan(1)
-      expect(state.activePlayer).toBe(0)
+      expect(state.activePlayer).toBe(state.players[0].id)
     })
 
     it('should deal 7 cards to all players', () => {
