@@ -5,8 +5,7 @@
 }
 
 .horizontal {
-  width: var(--card-height);
-  height: var(--card-width);
+  width: calc(2 * var(--card-height));
   font-size: 1rem;
   text-transform: uppercase;
 }

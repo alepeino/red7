@@ -18,30 +18,39 @@ const Canvas: React.FC<{ cards: CardModel[]; state: GameState }> = ({
 }) => {
   const topCard = last(cards)
 
-  const [{ highlighted, hovered, movingCard }, drop] = useDrop({
+  const [{ canDrop, hovered, movingCard }, drop] = useDrop({
     accept: CARD_DRAG_TYPE,
     drop: constant(CANVAS_DROP_RESULT),
     canDrop: (item: DroppableCard) => {
-      const before = state
-      const after = playCardToCanvas(state, state.activePlayer, item)
-      const w = winningPlayer(after)
-      console.log({before, after, w})
-      return false
+      const stateAfterPlaying = playCardToCanvas(
+        state,
+        state.activePlayer,
+        item
+      )
+      const playerWinningAfterPlaying = winningPlayer(stateAfterPlaying)
+      return (
+        playerWinningAfterPlaying &&
+        playerWinningAfterPlaying === state.activePlayer
+      )
     },
     collect: monitor => ({
-      highlighted: monitor.canDrop(),
+      canDrop: monitor.canDrop(),
       hovered: monitor.isOver(),
       movingCard: monitor.getItem(),
     }),
   })
+
   return (
     <div
       ref={drop}
       className={classNames([
         'p-6 flex justify-center',
         styles.canvas,
-        highlighted && styles.highlight,
-        hovered && movingCard && styles[`hover-card-${movingCard.color}`],
+        canDrop && styles.highlight,
+        canDrop &&
+          hovered &&
+          movingCard &&
+          styles[`hover-card-${movingCard.color}`],
       ])}
     >
       {topCard && <Card card={topCard} horizontal={true} />}
