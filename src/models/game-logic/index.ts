@@ -1,31 +1,34 @@
-import eq from 'lodash/fp/eq'
-import filter from 'lodash/fp/filter'
-import flatten from 'lodash/fp/flatten'
+import entries from 'lodash/fp/entries'
+import first from 'lodash/fp/first'
 import flow from 'lodash/fp/flow'
 import get from 'lodash/fp/get'
+import groupBy from 'lodash/fp/groupBy'
+import last from 'lodash/fp/last'
 import map from 'lodash/fp/map'
-import max from 'lodash/fp/max'
+import maxBy from 'lodash/fp/maxBy'
+import nth from 'lodash/fp/nth'
 import update from 'lodash/fp/update'
-import { CardNumber } from '../card'
+import { Card, CardColor } from '../card'
 import { GameState } from '../game'
 import { Player } from '../player'
 import { tiebreakMatchingCards } from './tiebreaking'
-
-const filterCardsOfNumber = (n: CardNumber) =>
-  filter(flow(get('number'), eq(n)))
+import { cardsOfNumber, highestCardNumberAmongPlayers } from './utils'
 
 export function winningPlayer(state: GameState): Player['id'] {
-  const highestCard = flow(
-    map('palette'),
-    flatten,
-    map('number'),
-    max
-  )(state.players)
-
   const playersMatchingCards = map(
-    update('palette', filterCardsOfNumber(highestCard)),
+    update('palette', getFilteringRule(state)),
     state.players
   )
-
   return tiebreakMatchingCards(playersMatchingCards).id
+}
+
+function getFilteringRule(state: GameState): (palette: Card[]) => Card[] {
+  const rules: any = {
+    [CardColor.RED]: cardsOfNumber(
+      highestCardNumberAmongPlayers(state.players)
+    ),
+    [CardColor.ORANGE]: flow(groupBy('number'), entries, maxBy(first), nth(1)),
+  }
+
+  return rules[get('color', last(state.canvas) || { color: CardColor.RED })]
 }

@@ -3,11 +3,13 @@ import { GameState } from '../../models/game'
 import { Canvas } from '../canvas'
 import { Player } from '../player'
 
-const Game: React.FC<GameState> = ({ canvas, players }) => {
+const Game: React.FC<GameState> = state => {
   return (
     <div className="select-none">
-      <Canvas cards={canvas}/>
-      {players.map(p => <Player key={p.name} {...p} />)}
+      <Canvas cards={state.canvas} state={state} />
+      {state.players.map(p => (
+        <Player key={p.name} {...p} />
+      ))}
     </div>
   )
 }

@@ -1,9 +1,13 @@
 import flatten from 'lodash/fp/flatten'
 import flow from 'lodash/fp/flow'
+import get from 'lodash/fp/get'
+import isEmpty from 'lodash/fp/isEmpty'
 import map from 'lodash/fp/map'
 import max from 'lodash/fp/max'
+import negate from 'lodash/fp/negate'
 import slice from 'lodash/fp/slice'
 import { Player } from '../player'
+import { cardsOfNumber, highestCardNumberAmongPlayers } from './utils'
 
 type TiebreakCriterion =
   | 'size'
@@ -20,7 +24,7 @@ const tiebreakCriteria: Record<
     nextCriterion: 'highestCardNumber',
   },
   highestCardNumber: {
-    resolver: tiebreakByColor,
+    resolver: tiebreakByNumber,
     nextCriterion: 'highestCardColor',
   },
   highestCardColor: {
@@ -47,6 +51,13 @@ export function tiebreakMatchingCards(
 function tiebreakByLength(players: Player[]): Player[] {
   const longestSetLength = max(map('palette.length', players))
   return players.filter(player => player.palette.length === longestSetLength)
+}
+
+function tiebreakByNumber(players: Player[]): Player[] {
+  const highestCard = highestCardNumberAmongPlayers(players)
+  return players.filter(
+    flow(get('palette'), cardsOfNumber(highestCard), negate(isEmpty))
+  )
 }
 
 function tiebreakByColor(players: Player[]): Player[] {

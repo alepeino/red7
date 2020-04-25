@@ -1,3 +1,4 @@
+import curry from 'lodash/fp/curry'
 import range from 'lodash/fp/range'
 
 export enum CardColor {
@@ -32,3 +33,7 @@ export const canvasRules: Record<CardColor, string> = {
 }
 
 export const serializeCard = (c: Card) => `c${c.color}n${c.number}`
+
+export const cardEquals = curry(
+  (c1: Card, c2: Card) => c1.number === c2.number && c1.color === c2.color
+)

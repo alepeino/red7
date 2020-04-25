@@ -4,17 +4,30 @@ import last from 'lodash/fp/last'
 import React from 'react'
 import { useDrop } from 'react-dnd'
 import { Card as CardModel } from '../../models/card'
-import { Card, CARD_DRAG_TYPE } from '../card'
+import { GameState } from '../../models/game'
+import { winningPlayer } from '../../models/game-logic'
+import { playCardToCanvas } from '../../models/game-logic/actions'
+import { Card, CARD_DRAG_TYPE, DroppableCard } from '../card'
 import styles from './canvas.scss'
 
 export const CANVAS_DROP_RESULT = { type: 'canvas' }
 
-const Canvas: React.FC<{ cards: CardModel[] }> = ({ cards }) => {
+const Canvas: React.FC<{ cards: CardModel[]; state: GameState }> = ({
+  cards,
+  state,
+}) => {
   const topCard = last(cards)
 
   const [{ highlighted, hovered, movingCard }, drop] = useDrop({
     accept: CARD_DRAG_TYPE,
     drop: constant(CANVAS_DROP_RESULT),
+    canDrop: (item: DroppableCard) => {
+      const before = state
+      const after = playCardToCanvas(state, state.activePlayer, item)
+      const w = winningPlayer(after)
+      console.log({before, after, w})
+      return false
+    },
     collect: monitor => ({
       highlighted: monitor.canDrop(),
       hovered: monitor.isOver(),

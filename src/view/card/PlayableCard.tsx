@@ -8,7 +8,7 @@ import { playToCanvas } from '../../state/actions'
 import { CANVAS_DROP_RESULT } from '../canvas'
 import { Card, CARD_DRAG_TYPE } from './index'
 
-type DroppableCard = CardModel & { type: string }
+export type DroppableCard = CardModel & { type: string }
 
 const PlayableCard: React.FC<{ card: CardModel }> = ({ card }) => {
   const [{ isDragging, dragPosition }, drag] = useDrag({
