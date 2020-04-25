@@ -8,6 +8,7 @@ import last from 'lodash/fp/last'
 import map from 'lodash/fp/map'
 import maxBy from 'lodash/fp/maxBy'
 import nth from 'lodash/fp/nth'
+import sortBy from 'lodash/fp/sortBy'
 import uniqBy from 'lodash/fp/uniqBy'
 import update from 'lodash/fp/update'
 import { Card, CardColor } from '../card'
@@ -33,6 +34,18 @@ function getFilteringRule(state: GameState): (palette: Card[]) => Card[] {
     [CardColor.YELLOW]: flow(groupBy('color'), entries, maxBy(first), nth(1)),
     [CardColor.GREEN]: filter<Card>(c => c.number % 2 === 0),
     [CardColor.BLUE]: uniqBy('color'),
+    [CardColor.INDIGO]: flow(
+      sortBy('number'),
+      (cards: Card[]) => cards.map((card, i, all) => all.slice(0, i + 1)),
+      (runs: Card[][]) =>
+        runs.filter(run =>
+          run.every((card, i, all) => {
+            const previous = all[i - 1]
+            return !previous || card.number - previous.number === 1
+          })
+        ),
+      maxBy('length')
+    ),
   }
 
   return rules[get('color', last(state.canvas) || { color: CardColor.RED })]
