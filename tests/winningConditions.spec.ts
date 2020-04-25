@@ -826,5 +826,28 @@ describe('Determine winning player', () => {
       }
       expect(winningPlayer(state)).toBe(0)
     })
+
+    it('it should return null if no player is winning', () => {
+      const players = makePlayers([
+        {
+          palette: [
+            { color: CardColor.VIOLET, number: 5 },
+            { color: CardColor.VIOLET, number: 4 },
+          ],
+        },
+        {
+          palette: [
+            { color: CardColor.YELLOW, number: 7 },
+            { color: CardColor.YELLOW, number: 6 },
+          ],
+        },
+      ])
+      const state: GameState = {
+        deck: [],
+        canvas: [{ color: CardColor.VIOLET, number: 0 }],
+        players,
+      }
+      expect(winningPlayer(state)).toBe(null)
+    })
   })
 })

@@ -17,12 +17,14 @@ import { Player } from '../player'
 import { tiebreakMatchingCards } from './tiebreaking'
 import { cardsOfNumber, highestCardNumberAmongPlayers } from './utils'
 
-export function winningPlayer(state: GameState): Player['id'] {
+export function winningPlayer(state: GameState): Player['id'] | null {
   const playersMatchingCards = map(
     update('palette', getFilteringRule(state)),
     state.players
   )
-  return tiebreakMatchingCards(playersMatchingCards).id
+  const winningPlayer = tiebreakMatchingCards(playersMatchingCards)
+
+  return winningPlayer ? winningPlayer.id : null
 }
 
 function getFilteringRule(state: GameState): (palette: Card[]) => Card[] {

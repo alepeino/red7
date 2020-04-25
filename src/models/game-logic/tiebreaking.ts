@@ -39,7 +39,7 @@ const tiebreakCriteria: Record<
 export function tiebreakMatchingCards(
   players: Player[],
   criterion: TiebreakCriterion = 'size'
-): Player {
+): Player | undefined {
   if (players.length <= 1) {
     return players[0]
   }
