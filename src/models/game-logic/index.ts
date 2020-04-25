@@ -28,6 +28,7 @@ function getFilteringRule(state: GameState): (palette: Card[]) => Card[] {
       highestCardNumberAmongPlayers(state.players)
     ),
     [CardColor.ORANGE]: flow(groupBy('number'), entries, maxBy(first), nth(1)),
+    [CardColor.YELLOW]: flow(groupBy('color'), entries, maxBy(first), nth(1)),
   }
 
   return rules[get('color', last(state.canvas) || { color: CardColor.RED })]
