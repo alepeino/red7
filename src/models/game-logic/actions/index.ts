@@ -25,3 +25,14 @@ export function playCardToPalette(
     )
   )(state)
 }
+
+export function playCardToCanvas(
+  state: GameState,
+  playerId: Player['id'],
+  card: Card
+): GameState {
+  return flow(
+    update('players', map(update('hand', remove(cardEquals(card))))),
+    update('canvas', partialRight(concat, [card]))
+  )(state)
+}
