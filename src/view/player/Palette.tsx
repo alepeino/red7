@@ -15,11 +15,12 @@ const Palette: React.FC<{
   playerId: Player['id']
   state: GameState
 }> = ({ cards, playerId, state }) => {
-  const [{ hovered, movingCard }, drop] = useDrop({
+  const [{ canDrop, hovered, movingCard }, drop] = useDrop({
     accept: CARD_DRAG_TYPE,
     drop: constant(PALETTE_DROP_RESULT),
     canDrop: () => playerId === state.activePlayer,
     collect: monitor => ({
+      canDrop: monitor.canDrop(),
       hovered: monitor.isOver(),
       movingCard: monitor.getItem(),
     }),
@@ -31,8 +32,8 @@ const Palette: React.FC<{
       className={classNames(
         'flex p-3',
         styles.palette,
-        movingCard && styles.highlight,
-        movingCard && hovered && styles[`hover-card-${movingCard.color}`]
+        canDrop && styles.highlight,
+        canDrop && hovered && styles[`hover-card-${movingCard.color}`]
       )}
     >
       {cards.map(card => (
