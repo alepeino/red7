@@ -22,6 +22,9 @@ const Canvas: React.FC<{ cards: CardModel[]; state: GameState }> = ({
     accept: CARD_DRAG_TYPE,
     drop: constant(CANVAS_DROP_RESULT),
     canDrop: (item: DroppableCard) => {
+      if (state.activePlayerPlayedToCanvas) {
+        return false
+      }
       const stateAfterPlaying = playCardToCanvas(
         state,
         state.activePlayer,

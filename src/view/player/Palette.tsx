@@ -18,7 +18,10 @@ const Palette: React.FC<{
   const [{ canDrop, hovered, movingCard }, drop] = useDrop({
     accept: CARD_DRAG_TYPE,
     drop: constant(PALETTE_DROP_RESULT),
-    canDrop: () => playerId === state.activePlayer,
+    canDrop: () =>
+      playerId === state.activePlayer &&
+      !state.activePlayerPlayedToPalette &&
+      !state.activePlayerPlayedToCanvas,
     collect: monitor => ({
       canDrop: monitor.canDrop(),
       hovered: monitor.isOver(),
