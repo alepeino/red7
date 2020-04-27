@@ -3,6 +3,7 @@ import flow from 'lodash/fp/flow'
 import map from 'lodash/fp/map'
 import partialRight from 'lodash/fp/partialRight'
 import remove from 'lodash/fp/remove'
+import set from 'lodash/fp/set'
 import update from 'lodash/fp/update'
 import { Card, cardEquals } from '../../card'
 import { GameState } from '../../game'
@@ -33,6 +34,7 @@ export function playCardToCanvas(
 ): GameState {
   return flow(
     update('players', map(update('hand', remove(cardEquals(card))))),
-    update('canvas', partialRight(concat, [card]))
+    update('canvas', partialRight(concat, [card])),
+    set('activePlayerPlayedToCanvas', true)
   )(state)
 }

@@ -125,5 +125,23 @@ describe('Game Actions', () => {
       expect(newState.canvas[1].color).toEqual(CardColor.RED)
       expect(newState.canvas[1].number).toEqual(5)
     })
+
+    it('should record that active player played card to canvas', () => {
+      const players = makePlayers([
+        { hand: [{ color: CardColor.ORANGE, number: 5 }] },
+        { hand: [{ color: CardColor.RED, number: 5 }] },
+        { hand: [{ color: CardColor.VIOLET, number: 5 }] },
+      ])
+      const state: GameState = {
+        deck: [],
+        canvas: [{ color: CardColor.RED, number: 0 }],
+        players,
+      }
+      const newState = playCardToCanvas(state, players[0].id, {
+        color: CardColor.ORANGE,
+        number: 5,
+      })
+      expect(newState.activePlayerPlayedToCanvas).toBe(true)
+    })
   })
 })
