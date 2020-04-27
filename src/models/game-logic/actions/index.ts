@@ -23,7 +23,8 @@ export function playCardToPalette(
           ? update('palette', partialRight(concat, [card]), player)
           : player
       )
-    )
+    ),
+    set('activePlayerPlayedToPalette', true)
   )(state)
 }
 
