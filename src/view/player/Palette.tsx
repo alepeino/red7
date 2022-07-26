@@ -33,7 +33,7 @@ const Palette: React.FC<{
     <div
       ref={drop}
       className={classNames(
-        'flex p-3',
+        'flex p-2',
         styles.palette,
         canDrop && styles.highlight,
         canDrop && hovered && styles[`hover-card-${movingCard.color}`]

@@ -16,7 +16,7 @@ function App() {
   useGlobalStateProvider()
 
   const options = {
-    enableTouchEvents: false,
+    enableTouchEvents: true,
     enableMouseEvents: true,
   }
 
